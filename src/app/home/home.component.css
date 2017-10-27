@@ -1,0 +1,24 @@
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top:70px;
+}
+.quick-reg{
+    padding: 10px;
+    font: tahoma 10px !important;
+    background: lightcyan;
+    width:100%;
+    color: red;
+    font-size: 12px !important;
+}
+.form-control{
+    height: 28px !important;
+    padding: 4px 7px !important;
+    font-size: 12px !important;
+}
