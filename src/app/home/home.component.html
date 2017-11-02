@@ -2,61 +2,90 @@
     <div class="row">
       <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
         <div class="row">
-          <div class="col-md-5 col-sm-5 col-xm-5">
+          <div class="col-md-4 col-sm-4 col-xm-4">
             <div class="quick-reg">
-              <form>
-                <div class="form-group">                  
-                  <div class="col-md-6 col-sm-6 colxs-6">
-                      <label class="control-label">First Name</label>
-                    <input class="form-control" name="firstName" placeholder="First Name">
+              <h4>Register Here</h4>
+              <form (ngSubmit)="onSubmit()" #basicProfile="ngForm">
+
+                <div class="row">                  
+                  <div class="col-md-12 col-sm-12 colxs-12">
+                      <mat-form-field class="data-entry">
+                          <input type="text" 
+                              matInput
+                              id="firstName"                           
+                              name="firstName" 
+                              placeholder="First Name">
+                      </mat-form-field>                   
+                  </div>
+                  </div>                 
+                   <div class="row">
+                  <div class="col-md-12 col-sm-12 colxs-12">
+                      <mat-form-field class="data-entry">
+                          <input type="text" 
+                              matInput
+                              id="lastName"                           
+                              name="lastName" 
+                              placeholder="Last Name">
+                      </mat-form-field>  
                   </div>                  
-                  <div class="col-md-6 col-sm-6 colxs-6">
-                      <label class="control-label">Last Name</label>
-                    <input class="form-control" name="lastName" placeholder="Last Name">
-                  </div>
-                </div>
-                <div class="form-group">                 
-                  <label class="control-label col-md-12 col-sm-12 colxs-12">Date of Birth</label>
-                  <div class="col-md-4 col-sm-4 colxs-4">
-                    <select class="form-control">
-                      <option value="" selected="selected">Day</option>
-                    </select>
-                  </div>
-                  <div class="col-md-4 col-sm-4 colxs-4">
-                      <select class="form-control">
-                        <option value="" selected="selected">Month</option>
-                      </select>
+                </div>                
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 colxs-12">
+                        <mat-form-field class="data-entry">
+                            <mat-select placeholder="Gender">
+                              <mat-option [value]="Female">Female</mat-option>
+                              <mat-option [value]="Male">Male</mat-option>                              
+                            </mat-select>
+                        </mat-form-field>                        
                     </div>
-                    <div class="col-md-4 col-sm-4 colxs-4">
-                        <select class="form-control">
-                          <option value="" selected="selected">Year</option>
-                        </select>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-5 col-sm-5 colxs-5">
-                        <label class="control-label">Gender</label>
-                        <select class="form-control">
-                            <option value="" selected="selected">Gender</option>
-                            <option value="Female">Female</option>
-                            <option value="Male">Male</option>
-                          </select>
-                    </div>
-                    <div class="col-md-7 col-sm-7 colxs-7">
-                        <label class="control-label">Country</label>
-                        <input class="form-control" name="state" value="Nigeria" disabled>
+                    <div class="row">
+                    <div class="col-md-12 col-sm-12 colxs-12">
+                        <mat-form-field class="data-entry">
+                            <mat-select placeholder="Country">
+                              <mat-option [value]="Nigeria">Nigeria</mat-option>                                                            
+                            </mat-select>
+                        </mat-form-field>                         
                     </div>                  
                 </div>
-                <div class="form-group">
-                    <div class="col-md-6 col-sm-6 colxs-6">
-                        <label class="control-label">State/Province</label>
-                        <input class="form-control" name="state" placeholder="Type here...">
-                    </div>
-                    <div class="col-md-6 col-sm-6 colxs-6">
-                        <label class="control-label">City</label>
-                        <input class="form-control" name="city" placeholder="Type here...">
+                <div class="row">                   
+                    <div class="col-md-12 col-sm-12 colxs-12">
+                        <mat-form-field class="data-entry">
+                            <input type="text" 
+                                matInput
+                                id="city"                           
+                                name="city" 
+                                placeholder="City">
+                        </mat-form-field>                         
                     </div>
                 </div>
+                <div class="row">
+                  <div class="col-md-12">
+                      <mat-form-field class="data-entry">
+                          <input type="email" 
+                              matInput
+                              id="email"                           
+                              name="email" 
+                              placeholder="Email">
+                      </mat-form-field>          
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <mat-form-field class="data-entry">
+                            <input type="password" 
+                                matInput
+                                id="password"                           
+                                name="password" 
+                                placeholder="Password">
+                        </mat-form-field>          
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                        <button mat-raised-button color="warn">Register</button>
+                    </div>
+                  </div>
               </form>
             </div>
           </div>
