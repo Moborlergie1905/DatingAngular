@@ -5,7 +5,7 @@
           <div class="col-md-4 col-sm-4 col-xm-4">
             <div class="quick-reg">
               <h4>Register Here</h4>
-              <form (ngSubmit)="onSubmit()" #basicProfile="ngForm">
+              <form (ngSubmit)="onSubmit(userFrm)" #basicProfile="ngForm">
 
                 <div class="row">                  
                   <div class="col-md-12 col-sm-12 colxs-12">
@@ -88,6 +88,14 @@
                   </div>
               </form>
             </div>
+          </div>
+          <div class="col-md-4">
+            <div *ngIf="msg" role="alert" class="alert alert-info alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                {{msg}}
+              </div>
           </div>
         </div>
       </div>
