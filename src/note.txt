@@ -1,0 +1,125 @@
+ngOnInit(): void {
+    this.userFrm = this.fb.group({
+      Id: [''],
+      FirstName: ['', Validators.required],
+      LastName: ['', Validators.required],
+      Gender: [''],
+      Country: [''],
+      City: [''],
+      Email: ['', Validators.required],
+      Password: ['', Validators.required]
+    });
+    this.LoadUsers();   
+  }
+  LoadUsers(): void{
+    this.indLoading = true;
+    this._userService.get(Global.BASE_USER_ENDPOINT)
+     .subscribe(users => { this.users = users; this.indLoading = false; },
+     error => this.msg = <any>error);
+  }
+
+  onSubmit(formData: any) {
+    this.msg = "";
+  
+    // switch (this.dbops) {
+    //   case DbOperation.create:
+        this._userService.post(Global.BASE_USER_ENDPOINT + 'api/profile', formData._value)
+        .subscribe(
+          data => {
+            if (data == 1) //Success
+            {
+              this.msg = "Data successfully added.";
+              // this.LoadUsers();
+            }
+            else
+            {
+              this.msg = "There is some issue in saving records, please contact to system administrator!"
+            }             
+            
+          },
+          error => {
+           this.msg = error;
+          }
+        );
+    //     break;
+    //   case DbOperation.update:
+    //     this._userService.put(Global.BASE_USER_ENDPOINT, formData._value.Id, formData._value)
+    //     .subscribe(
+    //       data => {
+    //         if (data == 1) //Success
+    //         {
+    //           this.msg = "Data successfully updated.";
+    //           // this.LoadUsers();
+    //         }
+    //         else {
+    //           this.msg = "There is some issue in saving records, please contact to system administrator!"
+    //         }
+            
+    //       },
+    //       error => {
+    //         this.msg = error;
+    //       }
+    //     );
+    //     break;
+    //   case DbOperation.delete:
+    //     this._userService.delete(Global.BASE_USER_ENDPOINT, formData._value.Id)
+    //     .subscribe(
+    //       data => {
+    //         if (data == 1) //Success
+    //         {
+    //           this.msg = "Data successfully deleted.";
+    //           // this.LoadUsers();
+    //         }
+    //         else {
+    //           this.msg = "There is some issue in saving records, please contact to system administrator!"
+    //         }
+            
+    //       },
+    //       error => {
+    //         this.msg = error;
+    //       }
+    //     );
+    //     break;
+
+    // }
+  }
+
+  ==============================================================
+
+   get(url: string): Observable<any> {
+    return this._http.get(url)
+      .map((response: Response) => <any>response.json())
+      // .do(data => console.log("All: " + JSON.stringify(data)))
+      .catch(this.handleError);
+  }
+
+  post(url: string, model: any): Observable<any> {
+    let body = JSON.stringify(model);
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this._http.post(url, body, options)
+      .map((response: Response) => <any>response.json())
+      .catch(this.handleError);
+  }
+
+  put(url: string, id: number, model: any): Observable<any> {
+    let body = JSON.stringify(model);
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this._http.put(url+id, body, options)
+      .map((response: Response) => <any>response.json())
+      .catch(this.handleError);
+  }
+
+  delete(url: string, id: number): Observable<any> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this._http.delete(url+id,options)
+      .map((response: Response) => <any>response.json())
+      .catch(this.handleError);
+  }
+
+  private handleError(error: Response) {
+    console.error(error);
+    return Observable.throw(error.json().error || 'Server error');
+  }

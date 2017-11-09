@@ -19,100 +19,34 @@ export class HomeComponent implements OnInit {
   indLoading: boolean = false;
   userFrm: FormGroup;
   dbops: DbOperation;
-  // days = [
-  //   {value:'1', viewValue:'01'},
-  //   {value:'2', viewValue:'02'},
-  //   {value:'3', viewValue:'03'},
-  //   {value:'4', viewValue:'04'},
-  //   {value:'5', viewValue:'05'}
-  // ]
-  // profile = new Profile();
-  constructor(private fb: FormBuilder, private _userService: DatingService) { }
 
-  ngOnInit(): void {
-    this.userFrm = this.fb.group({
-      Id: [''],
-      FirstName: ['', Validators.required],
-      LastName: ['', Validators.required],
-      Gender: [''],
-      Country: [''],
-      City: [''],
-      Email: ['', Validators.required],
-      Password: ['', Validators.required]
-    });
-    this.LoadUsers();   
-  }
-  LoadUsers(): void{
-    this.indLoading = true;
-    this._userService.get(Global.BASE_USER_ENDPOINT)
-     .subscribe(users => { this.users = users; this.indLoading = false; },
-     error => this.msg = <any>error);
+  genders = [
+    {
+      value:'Female',viewValue:'Female'
+    },
+    {
+      value:'Male',viewValue:'Male'
+    }   
+  ];
+
+  countries = [
+    {value:'Nigeria', viewValue:'Nigeria'}
+  ];
+
+  startDate = new Date(1990, 0, 1);
+ 
+  constructor(private datingService: DatingService) { }
+
+  ngOnInit(): void {    
   }
 
-  onSubmit(formData: any) {
-    this.msg = "";
+  newProfile(FirstName:string,LastName:string,Gender:string,Email:string,Password:string,Country:string,City:string,DOB:Date){
+    this.datingService.CreateProfile(FirstName,LastName,Gender,Email,Password,Country,City,DOB)
+        .then(prof => {
+          console.log(prof);
+          // this.users.push(prof);
+        });
+  }
   
-    // switch (this.dbops) {
-    //   case DbOperation.create:
-        this._userService.post(Global.BASE_USER_ENDPOINT + 'api/profile', formData._value)
-        .subscribe(
-          data => {
-            if (data == 1) //Success
-            {
-              this.msg = "Data successfully added.";
-              // this.LoadUsers();
-            }
-            else
-            {
-              this.msg = "There is some issue in saving records, please contact to system administrator!"
-            }             
-            
-          },
-          error => {
-           this.msg = error;
-          }
-        );
-    //     break;
-    //   case DbOperation.update:
-    //     this._userService.put(Global.BASE_USER_ENDPOINT, formData._value.Id, formData._value)
-    //     .subscribe(
-    //       data => {
-    //         if (data == 1) //Success
-    //         {
-    //           this.msg = "Data successfully updated.";
-    //           // this.LoadUsers();
-    //         }
-    //         else {
-    //           this.msg = "There is some issue in saving records, please contact to system administrator!"
-    //         }
-            
-    //       },
-    //       error => {
-    //         this.msg = error;
-    //       }
-    //     );
-    //     break;
-    //   case DbOperation.delete:
-    //     this._userService.delete(Global.BASE_USER_ENDPOINT, formData._value.Id)
-    //     .subscribe(
-    //       data => {
-    //         if (data == 1) //Success
-    //         {
-    //           this.msg = "Data successfully deleted.";
-    //           // this.LoadUsers();
-    //         }
-    //         else {
-    //           this.msg = "There is some issue in saving records, please contact to system administrator!"
-    //         }
-            
-    //       },
-    //       error => {
-    //         this.msg = error;
-    //       }
-    //     );
-    //     break;
-
-    // }
-  }
 
 }

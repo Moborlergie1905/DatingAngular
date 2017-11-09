@@ -5,7 +5,7 @@
           <div class="col-md-4 col-sm-4 col-xm-4">
             <div class="quick-reg">
               <h4>Register Here</h4>
-              <form (ngSubmit)="onSubmit(userFrm)" #basicProfile="ngForm">
+              <form  #basicProfile="ngForm" novalidate>
 
                 <div class="row">                  
                   <div class="col-md-12 col-sm-12 colxs-12">
@@ -13,7 +13,7 @@
                           <input type="text" 
                               matInput
                               id="firstName"                           
-                              name="firstName" 
+                              #firstName
                               placeholder="First Name">
                       </mat-form-field>                   
                   </div>
@@ -24,7 +24,7 @@
                           <input type="text" 
                               matInput
                               id="lastName"                           
-                              name="lastName" 
+                              #lastName 
                               placeholder="Last Name">
                       </mat-form-field>  
                   </div>                  
@@ -32,18 +32,27 @@
                 <div class="row">
                     <div class="col-md-12 col-sm-12 colxs-12">
                         <mat-form-field class="data-entry">
-                            <mat-select placeholder="Gender">
-                              <mat-option [value]="Female">Female</mat-option>
-                              <mat-option [value]="Male">Male</mat-option>                              
+                            <mat-select placeholder="Gender" #gender id="gender">
+                              <mat-option *ngFor="let gender of genders" [value]="gender.value">{{gender.viewValue}}</mat-option>
+                                                         
                             </mat-select>
                         </mat-form-field>                        
                     </div>
                     </div>
                     <div class="row">
+                        <div class="col-md-12 col-sm-12 colxs-12">
+                            <mat-form-field class="data-entry">
+                                <input #dob id="dob" matInput [matDatepicker]="picker" placeholder="Date of Birth">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
                     <div class="col-md-12 col-sm-12 colxs-12">
-                        <mat-form-field class="data-entry">
+                        <mat-form-field class="data-entry" #country id="country">
                             <mat-select placeholder="Country">
-                              <mat-option [value]="Nigeria">Nigeria</mat-option>                                                            
+                              <mat-option value="Nigeria">Nigeria</mat-option>                                                            
                             </mat-select>
                         </mat-form-field>                         
                     </div>                  
@@ -54,7 +63,7 @@
                             <input type="text" 
                                 matInput
                                 id="city"                           
-                                name="city" 
+                                #city 
                                 placeholder="City">
                         </mat-form-field>                         
                     </div>
@@ -65,7 +74,7 @@
                           <input type="email" 
                               matInput
                               id="email"                           
-                              name="email" 
+                              #email
                               placeholder="Email">
                       </mat-form-field>          
                   </div>
@@ -76,14 +85,22 @@
                             <input type="password" 
                                 matInput
                                 id="password"                           
-                                name="password" 
+                                #password 
                                 placeholder="Password">
                         </mat-form-field>          
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                        <button mat-raised-button color="warn">Register</button>
+                        <button
+                            type="submit"
+                            mat-raised-button 
+                            color="warn"
+                            name="action"
+                            (click)="newProfile(firstName.value,lastName.value,gender.value,country.value,city.value,email.value,password.value,dob.value)">
+                            Register
+                            <i class="material-icons right">send</i>
+                        </button>
                     </div>
                   </div>
               </form>

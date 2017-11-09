@@ -4,12 +4,15 @@ import {APP_BASE_HREF} from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DatingService } from './service/datingservice.service';
 import { 
          MatInputModule, 
          MatButtonModule, 
          MatSelectModule,
-         MatMenuModule
+         MatMenuModule,
+         MatDatepickerModule,
+         MatNativeDateModule
        } from '@angular/material';
 import 'hammerjs';
 
@@ -24,6 +27,8 @@ import { MessageComponent } from './message/message.component';
 import { InterestComponent } from './interest/interest.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { Http, HttpModule } from '@angular/http';
+import { ConfigService } from './shared/config.service';
 
 
 @NgModule({
@@ -36,7 +41,7 @@ import { LogoutComponent } from './logout/logout.component';
     MessageComponent,
     InterestComponent,
     LoginComponent,
-    LogoutComponent,
+    LogoutComponent    
     
   ],
   imports: [
@@ -46,7 +51,10 @@ import { LogoutComponent } from './logout/logout.component';
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
-    MatMenuModule,
+    MatMenuModule, 
+    MatDatepickerModule,   
+    MatNativeDateModule,
+    HttpModule,
    
     RouterModule.forRoot([
       {
@@ -77,7 +85,11 @@ import { LogoutComponent } from './logout/logout.component';
   ],
   providers: [
     {provide: APP_BASE_HREF, useValue: '/'},
-    DatingService
+    DatingService,
+    FormBuilder,
+    ConfigService
+    // Http,
+    // HttpModule
   ],
   bootstrap: [AppComponent]
 })
