@@ -32,10 +32,12 @@ export class DatingService {
     return this._http.post(this._baseUrl + 'profile/', body, {headers: this.headers})
                      .toPromise()
                      .then(res => res.json().data as IUser)
-                     .catch(this.handleError);
+                     .catch(this.errHandler);
    }
 
-
+   private errHandler(){
+       console.log('Error occured');
+   }
    private handleError(error: any) {
     var applicationError = error.headers.get('Application-Error');
     var serverError = error.json();

@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
  
   constructor(private datingService: DatingService) { }
 
-  ngOnInit(): void {    
+  ngOnInit() {    
   }
 
   newProfile(FirstName:string,LastName:string,Gender:string,Email:string,Password:string,Country:string,City:string,DOB:Date){
