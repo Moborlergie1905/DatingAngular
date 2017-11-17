@@ -34,6 +34,8 @@ export class HomeComponent implements OnInit {
   ];
 
   startDate = new Date(1990, 0, 1);
+
+  statusMsg: string = "";
  
   constructor(private datingService: DatingService) { }
 
@@ -42,10 +44,11 @@ export class HomeComponent implements OnInit {
 
   newProfile(FirstName:string,LastName:string,Gender:string,Email:string,Password:string,Country:string,City:string,DOB:Date){
     this.datingService.CreateProfile(FirstName,LastName,Gender,Email,Password,Country,City,DOB)
-        .then(prof => {
-          console.log(prof);
-          // this.users.push(prof);
-        });
+        .then((prof) => 
+          console.log(prof), (error) => {
+            this.statusMsg = "Error Accessing Webservice";
+          }        
+        );
   }
   
 

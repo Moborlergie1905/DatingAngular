@@ -28,3 +28,15 @@ export interface IUser{
       Desc: string;
       Age: number
 }
+
+export interface IDateReg{
+      ID?: number;
+      MinAge?: number;
+      MaxAge?: number;
+      Height?: string;
+      Weight?: string;
+      BodyType?: string;
+      HaveChild?: string;
+      WantChild?: string;
+      City?: string;
+}

@@ -32,28 +32,30 @@ export class DatingService {
     return this._http.post(this._baseUrl + 'profile/', body, {headers: this.headers})
                      .toPromise()
                      .then(res => res.json().data as IUser)
-                     .catch(this.errHandler);
+                     .catch(this.handleError);
    }
 
    private errHandler(){
        console.log('Error occured');
    }
-   private handleError(error: any) {
-    var applicationError = error.headers.get('Application-Error');
-    var serverError = error.json();
-    var modelStateErrors: string = '';
+   private handleError(error: Response) {
+       console.error(error);
+       return Observable.throw(error);
+    // var applicationError = error.headers.get('Application-Error');
+    // var serverError = error.json();
+    // var modelStateErrors: string = '';
 
-    if (!serverError.type) {
-        console.log(serverError);
-        for (var key in serverError) {
-            if (serverError[key])
-                modelStateErrors += serverError[key] + '\n';
-        }
+    // if (!serverError.type) {
+    //     console.log(serverError);
+    //     for (var key in serverError) {
+    //         if (serverError[key])
+    //             modelStateErrors += serverError[key] + '\n';
+    //     }
     }
 
-    modelStateErrors = modelStateErrors = '' ? null : modelStateErrors;
+    // modelStateErrors = modelStateErrors = '' ? null : modelStateErrors;
 
-    return Observable.throw(applicationError || modelStateErrors || 'Server error');
+    // return Observable.throw(applicationError || modelStateErrors || 'Server error');
 }
 
-}
+// }
