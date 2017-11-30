@@ -8,7 +8,7 @@ import { DateFeedComponent } from './date-feed/date-feed.component';
 
 const profileRoute: Routes = [
     {
-        path: '',
+        path: 'profile',
         component: ProfileComponent,
         children:[
             { path: '', component: ProfileHomeComponent },

@@ -5,3 +5,8 @@ body {
     padding-bottom: 20px;
     background: pink;
 }
+
+.side-bg {
+    background-color: rgb(255,20,147);
+    height: 590px;
+}

@@ -8,7 +8,7 @@ import { LogoutComponent } from '../logout/logout.component';
 
 const appRoutes : Routes = [
   {
-    path: '',
+    path: 'home',
     component: HomeComponent
   },
   {
@@ -19,6 +19,11 @@ const appRoutes : Routes = [
     path: 'logout',
     component: LogoutComponent
   },
+  // {
+  //   path: '',
+  //   redirectTo: '/home',
+  //   pathMatch: 'full'
+  // },
   {
     path: '**',
     component: PageNotFoundComponent
