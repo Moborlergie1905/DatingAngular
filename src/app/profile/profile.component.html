@@ -1,3 +1,18 @@
-<p>
-  profile works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <ul class="nav nav-pills nav-stacked">
+        <li class="nav-item"><a routerLink="/">Home</a></li>
+        <li class="nav-item"><a routerLink="/message">Message</a></li>
+        <li class="nav-item"><a routerLink="/interest">Interest</a></li>
+
+        <li class="nav-item"><a routerLink="/profile">Setting</a></li>
+      </ul>
+    </div>
+    <div class="col-md-6 col-md-offset-1">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>
+

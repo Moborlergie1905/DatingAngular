@@ -29,6 +29,9 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { Http, HttpModule } from '@angular/http';
 import { ConfigService } from './shared/config.service';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AppRoutingModule } from './app-routing/app-routing.module';
+import { ProfileModule } from './profile/profile.module';
 
 
 @NgModule({
@@ -41,11 +44,14 @@ import { ConfigService } from './shared/config.service';
     MessageComponent,
     InterestComponent,
     LoginComponent,
-    LogoutComponent    
+    LogoutComponent,
+    PageNotFoundComponent    
     
   ],
   imports: [
     BrowserModule,
+    ProfileModule,
+    AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
     MatInputModule,
@@ -54,42 +60,12 @@ import { ConfigService } from './shared/config.service';
     MatMenuModule, 
     MatDatepickerModule,   
     MatNativeDateModule,
-    HttpModule,
-   
-    RouterModule.forRoot([
-      {
-        path: '',
-        component: HomeComponent
-      },
-      { 
-        path: 'profile', 
-        component: ProfileComponent 
-      },
-      { 
-        path: 'message', 
-        component: MessageComponent 
-      },
-      { 
-        path: 'interest', 
-        component: InterestComponent 
-      },
-      {
-        path: 'login',
-        component: LoginComponent
-      },
-      {
-        path: 'logout',
-        component: LogoutComponent
-      }
-     ])
+    HttpModule   
   ],
-  providers: [
-    {provide: APP_BASE_HREF, useValue: '/'},
+  providers: [   
     DatingService,
     FormBuilder,
-    ConfigService
-    // Http,
-    // HttpModule
+    ConfigService    
   ],
   bootstrap: [AppComponent]
 })

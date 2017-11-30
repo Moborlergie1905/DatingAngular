@@ -5,6 +5,7 @@ import { IUser } from '../model/user';
 import { DbOperation } from '../Shared/enum';
 import { Observable } from 'rxjs/Rx';
 import { Global } from '../Shared/global';
+import { Router } from '@angular/router';
 // import { Profile } from '../profile';
 
 @Component({
@@ -37,7 +38,7 @@ export class HomeComponent implements OnInit {
 
   statusMsg: string = "";
  
-  constructor(private datingService: DatingService) { }
+  constructor(private datingService: DatingService, private router: Router) { }
 
   ngOnInit() {    
   }
@@ -47,8 +48,9 @@ export class HomeComponent implements OnInit {
         .then((prof) => 
           console.log(prof), (error) => {
             this.statusMsg = "Error Accessing Webservice";
-          }        
+          }                          
         );
+        this.router.navigate(['/about-me']); 
   }
   
 
