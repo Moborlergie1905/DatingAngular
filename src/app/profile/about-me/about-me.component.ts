@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about-me.component.css']
 })
 export class AboutMeComponent implements OnInit {
-
+  userEmail: any;
   constructor() { }
 
   ngOnInit() {
+    this.userEmail = localStorage.getItem('userEmail');
+    console.log('Saved User: ', this.userEmail);
   }
 
 }

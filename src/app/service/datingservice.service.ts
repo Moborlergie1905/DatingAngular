@@ -12,27 +12,55 @@ import { ConfigService } from '../shared/config.service';
 @Injectable()
 export class DatingService {
 
+  private  isLoggedIn = false;
+
   private headers = new Headers({'Content-Type': 'application/json'});
   
       _baseUrl: string = '';
+
+      user: IUser;
 
   constructor(private _http: Http, private configService: ConfigService) {
     this._baseUrl = configService.getApiURI();
    }  
 
-   CreateProfile(FirstName:string,LastName:string,Gender:string,Email:string,Password:string,Country:string,City:string,DOB:Date){
-     let body = JSON.stringify({FirstName:FirstName,
-                                LastName:LastName,
-                                Gender:Gender,                                
-                                Email:Email,
-                                Password:Password,
-                                Country:Country,
-                                City:City,
-                                DOB:DOB});
+//    CreateProfile(FirstName:string,LastName:string,Gender:string,Email:string,Password:string,Country:string,City:string,DOB:Date){
+//      let body = JSON.stringify({FirstName:FirstName,
+//                                 LastName:LastName,
+//                                 Gender:Gender,                                
+//                                 Email:Email,
+//                                 Password:Password,
+//                                 Country:Country,
+//                                 City:City,
+//                                 DOB:DOB});
+//     return this._http.post(this._baseUrl + 'profile/', body, {headers: this.headers})
+//                      .toPromise()
+//                      .then(res => res.json().data as IUser)
+//                      .catch(this.handleError);
+//    }
+//    CreateProf(User: IUser){
+//        let body = JSON.stringify(User);
+//        return this._http.post(this._baseUrl + 'profile/', body, {headers: this.headers})
+//                          .toPromise()
+//                          .then(res => res.json().data as IUser)
+//                          .catch(this.handleError);
+//    }
+    CreateProfile(myData: any){
+    let body = JSON.stringify(myData);
     return this._http.post(this._baseUrl + 'profile/', body, {headers: this.headers})
-                     .toPromise()
-                     .then(res => res.json().data as IUser)
-                     .catch(this.handleError);
+                      .toPromise()
+                      .then(res => res.json().data)
+                      .catch(this.handleError);
+}
+
+   UpdateProfile(user: IUser): Observable<void>{
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Access-Control-Allow-Origin', '*');
+
+    return this._http.put(this._baseUrl + 'profile/' + user.ID, JSON.stringify(user), {headers: header})
+      .map((res: Response) => { return; })
+      .catch(this.handleError);
    }
 
    private errHandler(){
@@ -40,22 +68,8 @@ export class DatingService {
    }
    private handleError(error: Response) {
        console.error(error);
-       return Observable.throw(error);
-    // var applicationError = error.headers.get('Application-Error');
-    // var serverError = error.json();
-    // var modelStateErrors: string = '';
-
-    // if (!serverError.type) {
-    //     console.log(serverError);
-    //     for (var key in serverError) {
-    //         if (serverError[key])
-    //             modelStateErrors += serverError[key] + '\n';
-    //     }
-    }
-
-    // modelStateErrors = modelStateErrors = '' ? null : modelStateErrors;
-
-    // return Observable.throw(applicationError || modelStateErrors || 'Server error');
+       return Observable.throw(error);    
+    }    
 }
 
-// }
+

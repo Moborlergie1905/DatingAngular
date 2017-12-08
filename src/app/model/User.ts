@@ -1,4 +1,4 @@
-export interface IUser{
+export class IUser{
       ID?: number;
       FirstName: string;
       LastName: string;

@@ -5,16 +5,16 @@
           <div class="col-md-4 col-sm-4 col-xm-4">
             <div class="quick-reg">
               <h4>Register Here</h4>
-              <form  #basicProfile="ngForm" novalidate>
+              <form  novalidate>
 
                 <div class="row">                  
                   <div class="col-md-12 col-sm-12 colxs-12">
                       <mat-form-field class="data-entry">
                           <input type="text" 
-                              matInput
-                              id="firstName"                           
-                              #firstName
-                              placeholder="First Name">
+                              matInput                             
+                              placeholder="First Name"
+                              [(ngModel)] = "user.FirstName"
+                              name="firstName">
                       </mat-form-field>                   
                   </div>
                   </div>                 
@@ -22,17 +22,17 @@
                   <div class="col-md-12 col-sm-12 colxs-12">
                       <mat-form-field class="data-entry">
                           <input type="text" 
-                              matInput
-                              id="lastName"                           
-                              #lastName 
-                              placeholder="Last Name">
+                              matInput                            
+                              placeholder="Last Name"
+                              [(ngModel)] = "user.LastName"
+                              name="lastName">
                       </mat-form-field>  
                   </div>                  
                 </div>                
                 <div class="row">
                     <div class="col-md-12 col-sm-12 colxs-12">
                         <mat-form-field class="data-entry">
-                            <mat-select placeholder="Gender" #gender id="gender">
+                            <mat-select placeholder="Gender" [(ngModel)] = "user.Gender" name="gender">
                               <mat-option *ngFor="let gender of genders" [value]="gender.value">{{gender.viewValue}}</mat-option>
                                                          
                             </mat-select>
@@ -42,7 +42,7 @@
                     <div class="row">
                         <div class="col-md-12 col-sm-12 colxs-12">
                             <mat-form-field class="data-entry">
-                                <input #dob id="dob" matInput [matDatepicker]="picker" placeholder="Date of Birth">
+                                <input matInput [matDatepicker]="picker" placeholder="Date of Birth" [(ngModel)] = "user.DOB" name="dob">
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
                             </mat-form-field>
@@ -51,7 +51,7 @@
                     <div class="row">
                     <div class="col-md-12 col-sm-12 colxs-12">
                         <mat-form-field class="data-entry">
-                            <mat-select placeholder="Country" #country id="country">
+                            <mat-select placeholder="Country" [(ngModel)] = "user.Country" name="country">
                               <mat-option *ngFor="let country of countries" [value]="country.value">{{country.viewValue}}</mat-option>                                                            
                             </mat-select>
                         </mat-form-field>                         
@@ -61,10 +61,10 @@
                     <div class="col-md-12 col-sm-12 colxs-12">
                         <mat-form-field class="data-entry">
                             <input type="text" 
-                                matInput
-                                id="city"                           
-                                #city 
-                                placeholder="City">
+                                matInput                                
+                                placeholder="City"
+                                [(ngModel)] = "user.City"
+                                name="city">
                         </mat-form-field>                         
                     </div>
                 </div>
@@ -72,10 +72,10 @@
                   <div class="col-md-12">
                       <mat-form-field class="data-entry">
                           <input type="email" 
-                              matInput
-                              id="email"                           
-                              #email
-                              placeholder="Email">
+                              matInput                             
+                              placeholder="Email"
+                              [(ngModel)] = "user.Email"
+                              name="email">
                       </mat-form-field>          
                   </div>
                 </div>
@@ -83,21 +83,20 @@
                     <div class="col-md-12">
                         <mat-form-field class="data-entry">
                             <input type="password" 
-                                matInput
-                                id="password"                           
-                                #password 
-                                placeholder="Password">
+                                matInput                                
+                                placeholder="Password"
+                                [(ngModel)] = "user.Password"
+                                name="password">
                         </mat-form-field>          
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                        <button
-                            type="submit"
+                        <button                            
                             mat-raised-button 
                             color="warn"
                             name="action"
-                            (click)="newProfile(firstName.value,lastName.value,gender.value,email.value,password.value,country.value,city.value,dob.value)">
+                            (click)="newProf()">
                             Register
                             <i class="material-icons right">send</i>
                         </button>
@@ -119,3 +118,6 @@
       </div>
     </div>
 </div>
+
+<!-- firstName.value,lastName.value,gender.value,email.value,password.value,country.value,city.value,dob.value -->
+<!-- type="submit" -->

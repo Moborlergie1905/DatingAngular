@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   users: IUser[];
-  user: IUser;
+  user: IUser = new IUser();
   msg: string;
   indLoading: boolean = false;
   userFrm: FormGroup;
@@ -43,14 +43,21 @@ export class HomeComponent implements OnInit {
   ngOnInit() {    
   }
 
-  newProfile(FirstName:string,LastName:string,Gender:string,Email:string,Password:string,Country:string,City:string,DOB:Date){
-    this.datingService.CreateProfile(FirstName,LastName,Gender,Email,Password,Country,City,DOB)
-        .then((prof) => 
-          console.log(prof), (error) => {
-            this.statusMsg = "Error Accessing Webservice";
-          }                          
-        );
-        this.router.navigate(['/about-me']); 
+  // newProfile(FirstName:string,LastName:string,Gender:string,Email:string,Password:string,Country:string,City:string,DOB:Date){
+  //   this.datingService.CreateProfile(FirstName,LastName,Gender,Email,Password,Country,City,DOB)
+  //       .then(prof => console.log(prof));
+        // error => {
+        //     this.statusMsg = "Error Accessing Webservice";
+        //   }                          
+        // );
+        // this.router.navigate(['profile/about-me']); 
+  // }
+  newProf(){
+    this.datingService.CreateProfile(this.user)
+        .then(res => this.user = res);        
+        localStorage.setItem('userEmail',this.user.Email);
+        this.router.navigate(['profile/about-me']);
+        // console.log('First name',this.user.FirstName);
   }
   
 

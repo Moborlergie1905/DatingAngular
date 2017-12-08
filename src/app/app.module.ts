@@ -32,6 +32,7 @@ import { ConfigService } from './shared/config.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { ProfileModule } from './profile/profile.module';
+import { AuthGuard } from './auth.guard';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { ProfileModule } from './profile/profile.module';
   providers: [   
     DatingService,
     FormBuilder,
-    ConfigService    
+    ConfigService,
+    AuthGuard   
   ],
   bootstrap: [AppComponent]
 })
