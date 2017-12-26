@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { AboutMeComponent } from './about-me/about-me.component';
 import { AboutDateComponent } from './about-date/about-date.component';
 import { ProfileHomeComponent } from './profile-home/profile-home.component';
-import { DateFeedComponent } from './date-feed/date-feed.component';
 import { ProfileRoutingModule } from './profile-routing.module';
 
 
@@ -13,8 +12,7 @@ import { ProfileRoutingModule } from './profile-routing.module';
     declarations: [
         AboutMeComponent, 
         AboutDateComponent, 
-        ProfileHomeComponent, 
-        DateFeedComponent
+        ProfileHomeComponent       
     ],
     imports: [
         CommonModule,

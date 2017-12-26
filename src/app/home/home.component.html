@@ -1,123 +1,121 @@
-<div class="container body-content">
-    <div class="row">
-      <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
-        <div class="row">
-          <div class="col-md-4 col-sm-4 col-xm-4">
-            <div class="quick-reg">
+    <div class="row">      
+          <div class="col-md-6">
+            <div>
               <h4>Register Here</h4>
-              <form  novalidate>
+              <form #UserForm="ngForm" (ngSubmit)="newProfile()">
 
-                <div class="row">                  
-                  <div class="col-md-12 col-sm-12 colxs-12">
-                      <mat-form-field class="data-entry">
-                          <input type="text" 
-                              matInput                             
-                              placeholder="First Name"
-                              [(ngModel)] = "user.FirstName"
-                              name="firstName">
-                      </mat-form-field>                   
-                  </div>
-                  </div>                 
-                   <div class="row">
-                  <div class="col-md-12 col-sm-12 colxs-12">
-                      <mat-form-field class="data-entry">
-                          <input type="text" 
-                              matInput                            
-                              placeholder="Last Name"
-                              [(ngModel)] = "user.LastName"
-                              name="lastName">
-                      </mat-form-field>  
-                  </div>                  
+                <div class="form-row"> 
+                    <div class="form-group col-md-6">
+                      <label for="firstName">First Name</label>
+                      <input type="text" class="form-control form-control-sm" placeholder="First Name" id="firstName"                    
+                      name="FirstName"
+                      #FirstName="ngModel"
+                      [(ngModel)] = "user.FirstName">
+                    </div> 
+
+                    <div class="form-group col-md-6">
+                      <label for="firstName">Last Name</label>
+                      <input type="text" class="form-control form-control-sm" placeholder="Last Name" id="lastName"                    
+                      name="LastName"
+                      #LastName="ngModel"
+                      [(ngModel)] = "user.LastName">
+                    </div>  
                 </div>                
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 colxs-12">
-                        <mat-form-field class="data-entry">
-                            <mat-select placeholder="Gender" [(ngModel)] = "user.Gender" name="gender">
-                              <mat-option *ngFor="let gender of genders" [value]="gender.value">{{gender.viewValue}}</mat-option>
-                                                         
-                            </mat-select>
-                        </mat-form-field>                        
+                          
+                <div class="form-row">                    
+                    <div class="form-group col-md-4">
+                        <label for="gender">Gender</label>
+                        <select class="form-control" id="gender" name="Gender" 
+                           #Gender="ngModel"  [(ngModel)] = "user.Gender">
+                           <option selected>Choose...</option>
+                           <option *ngFor="let gender of genders" value="{{gender.value}}">{{gender.viewValue}}</option>
+                        </select>                                              
                     </div>
+                    <div class="form-group col-md-3">
+                        <label class="text-sm">DOB</label>
+                        <select class="form-control" 
+                            [(ngModel)]="mm"
+                            name="mm">
+                            <option selected>Month</option>
+                            <option *ngFor="let month of months" value="{{month.val}}">{{month.display}}</option>
+                        </select>                                              
                     </div>
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 colxs-12">
-                            <mat-form-field class="data-entry">
-                                <input matInput [matDatepicker]="picker" placeholder="Date of Birth" [(ngModel)] = "user.DOB" name="dob">
-                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
-                            </mat-form-field>
-                        </div>
+                    <div class="form-group col-md-2">
+                        <label></label>
+                        <select class="form-control" 
+                           [(ngModel)]="dd"
+                           name="dd">
+                           <option selected>Day</option>
+                           <option *ngFor="let day of days" value="{{day.val}}">{{day.display}}</option>
+                        </select>
                     </div>
-                    <div class="row">
-                    <div class="col-md-12 col-sm-12 colxs-12">
-                        <mat-form-field class="data-entry">
-                            <mat-select placeholder="Country" [(ngModel)] = "user.Country" name="country">
-                              <mat-option *ngFor="let country of countries" [value]="country.value">{{country.viewValue}}</mat-option>                                                            
-                            </mat-select>
-                        </mat-form-field>                         
-                    </div>                  
+                    <div class="form-group col-md-3">
+                        <label></label>
+                        <select class="form-control" 
+                            [(ngModel)]="yy"
+                            name="yy">
+                            <option selected>Year</option>
+                            <option *ngFor="let year of years" value="{{year.val}}">{{year.display}}</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="row">                   
-                    <div class="col-md-12 col-sm-12 colxs-12">
-                        <mat-form-field class="data-entry">
-                            <input type="text" 
-                                matInput                                
-                                placeholder="City"
-                                [(ngModel)] = "user.City"
-                                name="city">
-                        </mat-form-field>                         
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="country">Country</label>
+                        <select class="form-control" name="Country" #Country="ngModel"
+                            [(ngModel)]="user.Country">
+                            <!-- <option selected value="Nigeria">Nigeria</option> -->
+                            <option *ngFor="let country of countries" value="{{country.value}}">{{country.viewValue}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="country">State/Province</label>
+                        <select class="form-control" name="Province" #Province="ngModel"
+                            [(ngModel)]="user.Province">
+                            <option selected>Choose...</option>
+                            <option *ngFor="let state of states" value="{{state.val}}">{{state.display}}</option>
+                        </select>
                     </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-12">
-                      <mat-form-field class="data-entry">
-                          <input type="email" 
-                              matInput                             
-                              placeholder="Email"
-                              [(ngModel)] = "user.Email"
-                              name="email">
-                      </mat-form-field>          
-                  </div>
+                <div class="form-row"> 
+                    <div class="form-group col-md-6">
+                        <label for="email">E-mail</label>
+                        <input type="text" class="form-control" placeholder="E-mail" id="email"                    
+                          name="Email"
+                          #Email="ngModel"
+                          [(ngModel)] = "user.Email">
+                    </div> 
+    
+                    <div class="form-group col-md-6">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" placeholder="Password" id="password"                    
+                          name="Password"
+                          #Password="ngModel"
+                          [(ngModel)] = "user.Password">
+                    </div>  
+                </div>                           
+                
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="relType">Relationship Type</label>
+                        <select name="RelType" id="relType" class="form-control"
+                            #RelType="ngModel"
+                            [(ngModel)]="user.RelType">
+                            <option selected>Choose..</option>
+                            <option *ngFor="let relType of relTypes" value="{{relType.val}}">{{relType.display}}</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <mat-form-field class="data-entry">
-                            <input type="password" 
-                                matInput                                
-                                placeholder="Password"
-                                [(ngModel)] = "user.Password"
-                                name="password">
-                        </mat-form-field>          
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <button type="submit" class="btn btn-danger">Register</button>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                        <button                            
-                            mat-raised-button 
-                            color="warn"
-                            name="action"
-                            (click)="newProf()">
-                            Register
-                            <i class="material-icons right">send</i>
-                        </button>
-                    </div>
-                  </div>
+                </div>                 
               </form>
             </div>
           </div>
-          <div class="col-md-4">
-            <div *ngIf="msg" role="alert" class="alert alert-info alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                <span class="sr-only">Error:</span>
-                {{msg}}
-              </div>
-              <p>{{statusMsg}}</p>
-          </div>
-        </div>
-      </div>
+          <div class="col-md-6">
+            
+          </div>       
     </div>
-</div>
-
-<!-- firstName.value,lastName.value,gender.value,email.value,password.value,country.value,city.value,dob.value -->
-<!-- type="submit" -->

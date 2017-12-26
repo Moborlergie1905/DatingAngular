@@ -29,6 +29,12 @@ export class IUser{
       Age: number
 }
 
+export class TokenReg{
+      Email: string;
+      Password: string;
+      ConfirmPassword: string;
+}
+
 export interface IDateReg{
       ID?: number;
       MinAge?: number;

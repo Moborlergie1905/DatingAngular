@@ -1,16 +1,11 @@
-body {
+/* body {
     padding-top: 50px;
     padding-bottom: 20px;
     background: pink;
-}
+} */
 
 /* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-    margin-top:50px;
-    background: pink;
-}
+
 .quick-reg{
     padding: 10px;    
     background: rgb(225,225,225);
@@ -18,11 +13,11 @@ body {
     width:100%;
     font: tahoma 10px !important;
     border: 1px rgb(110,110,110,0.6);
-    border-radius:10%;
+    /* border-radius:10%; */
     /* color: red; */
     /* font-size: 12px !important; */
 }
-.form-control{
+/* .form-control{
     height: 28px !important;
     padding: 4px 7px !important;
     font-size: 12px !important;
@@ -39,4 +34,4 @@ body {
  }
  .row{
      margin-top:0px;
- }
+ } */

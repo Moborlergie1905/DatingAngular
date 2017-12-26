@@ -1,3 +1,115 @@
-<p>
-  about-me works!
-</p>
+<h4>Your Profile</h4>
+  <form #moreInfo="ngForm" (ngSubmit)="UpdateProfile()">
+    <div class="form-group">
+      <div class="col-md-6">   
+        <label class="form-control-label" for="inputSuccess1">Relationship Status</label>
+          <select class="form-control" [(ngModel)]="user.Marital" name="marital">
+            <option>Single</option>
+            <option>Married</option>
+            <option>Divorced</option>
+          </select>      
+      </div>
+      <div class="col-md-6">              
+        <label class="form-control-label" for="inputSuccess1">Do You Have Children</label>
+        <select class="form-control" [(ngModel)]="user.HaveChild" name="haveChild">
+          <option>Yes</option>
+          <option>No</option>
+        </select>                                   
+            </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-6">   
+          <label class="form-control-label" for="inputSuccess1">Do You Want Children</label>
+            <select class="form-control" [(ngModel)]="user.WantChild" name="wantChild">
+              <option>Yes</option>
+              <option>No</option>
+            </select>      
+        </div>
+        <div class="col-md-6">              
+          <label class="form-control-label" for="inputSuccess1">Your Body Type</label>
+          <select class="form-control" [(ngModel)]="user.BodyType" name="bodyType">
+            <option>Average</option>
+            <option>Slim</option>
+            <option>Muscular</option>
+            <option>Athletic</option>
+            <option>Big & Beautiful</option>
+          </select>                                   
+        </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-6">   
+        <label class="form-control-label" for="inputSuccess1">Your Height</label>
+          <select class="form-control" [(ngModel)]="user.Height" name="height">            
+            <option>120cm</option>
+            <option>125cm</option>
+            <option>130cm</option>
+            <option>140cm</option>
+            <option>150cm</option>
+          </select>      
+      </div>
+      <div class="col-md-6">              
+        <label class="form-control-label" for="inputSuccess1">Your Weight</label>
+        <select class="form-control" [(ngModel)]="user.Weight" name="weight">
+          <option>35kg</option>
+          <option>45kg</option>  
+        </select>                                   
+      </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-6">   
+      <label class="form-control-label" for="inputSuccess1">Education Level</label>
+        <select class="form-control" [(ngModel)]="user.Education" name="education">
+          <option>Basic Education</option>
+          <option>High School</option>
+          <option>Diploma</option>
+        </select>      
+    </div>
+    <div class="col-md-6">              
+      <label class="form-control-label" for="inputSuccess1">Faith</label>
+      <select class="form-control" [(ngModel)]="user.Religion" name="religion">
+        <option>Atheist</option>
+        <option>Buddist</option>
+        <option>Christianity</option>
+        <option>Hindu</option>
+        <option>Islam</option>        
+        <option>Jewish</option>
+        <option>Other</option>
+      </select>                                   
+    </div>
+</div>
+<div class="form-group">
+  <div class="col-md-6">   
+    <label class="form-control-label" for="inputSuccess1">Do You Smoke</label>
+      <select class="form-control" [(ngModel)]="user.Smoke" name="smoke">
+        <option>Yes</option>
+        <option>No</option>       
+      </select>      
+  </div>
+  <div class="col-md-6">              
+    <label class="form-control-label" for="inputSuccess1">Do You Drink</label>
+    <select class="form-control" [(ngModel)]="user.Drink" name="drink">
+      <option>Yes</option>
+      <option>No</option>     
+    </select>                                   
+  </div>
+</div>
+<div class="form-group">
+  <div class="col-md-6">              
+    <label class="form-control-label" for="inputSuccess1">Relationship Type</label>
+      <select class="form-control" [(ngModel)]="user.RelType" name="drink">
+        <option>Short Term</option>
+        <option>Long Term</option>     
+      </select>                                   
+  </div>
+  <div class="col-md-6">
+    <label class="form-control-label" for="inputSuccess1">Occupation</label>
+    <input type="text" class="form-control" [(ngModel)]="user.Occupation" name="occupation">
+  </div>
+</div>
+<div class="form-group">
+  <div class="col-md-6">
+    <button type="submit" class="btn btn-danger">Update</button>
+  </div>
+</div>
+
+  </form>  

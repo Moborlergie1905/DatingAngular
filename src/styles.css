@@ -1,12 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 body {
-    padding-top: 50px;
+    /* padding-top: 50px; */
     padding-bottom: 20px;
+    background: pink;
+}
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top:50px;
     background: pink;
 }
 
 .side-bg {
     background-color: rgb(255,20,147);
     height: 590px;
+}
+.profile-top{
+    position: relative;
+    width:100%;
+    height: 150px;
+    padding:25px;
+    background: #ffffff;
 }

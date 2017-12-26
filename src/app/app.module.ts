@@ -32,7 +32,10 @@ import { ConfigService } from './shared/config.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { ProfileModule } from './profile/profile.module';
+
 import { AuthGuard } from './auth.guard';
+import { AccountModule } from './account/account.module';
+
 
 
 @NgModule({
@@ -47,10 +50,10 @@ import { AuthGuard } from './auth.guard';
     LoginComponent,
     LogoutComponent,
     PageNotFoundComponent    
-    
   ],
   imports: [
     BrowserModule,
+    AccountModule,   
     ProfileModule,
     AppRoutingModule,
     BrowserAnimationsModule,

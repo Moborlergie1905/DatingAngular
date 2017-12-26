@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions} from '@angular/http';
+import { Http, Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import {Observer} from 'rxjs/Observer';
 import 'rxjs/add/operator/map';
@@ -7,7 +7,9 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise';
 import { IUser } from '../model/user';
+import { TokenReg } from '../model/user';
 import { ConfigService } from '../shared/config.service';
+
 
 @Injectable()
 export class DatingService {
@@ -19,49 +21,57 @@ export class DatingService {
       _baseUrl: string = '';
 
       user: IUser;
+      users: IUser[];
+      tokenReg: TokenReg;
 
   constructor(private _http: Http, private configService: ConfigService) {
     this._baseUrl = configService.getApiURI();
    }  
 
-//    CreateProfile(FirstName:string,LastName:string,Gender:string,Email:string,Password:string,Country:string,City:string,DOB:Date){
-//      let body = JSON.stringify({FirstName:FirstName,
-//                                 LastName:LastName,
-//                                 Gender:Gender,                                
-//                                 Email:Email,
-//                                 Password:Password,
-//                                 Country:Country,
-//                                 City:City,
-//                                 DOB:DOB});
-//     return this._http.post(this._baseUrl + 'profile/', body, {headers: this.headers})
-//                      .toPromise()
-//                      .then(res => res.json().data as IUser)
-//                      .catch(this.handleError);
-//    }
-//    CreateProf(User: IUser){
-//        let body = JSON.stringify(User);
-//        return this._http.post(this._baseUrl + 'profile/', body, {headers: this.headers})
-//                          .toPromise()
-//                          .then(res => res.json().data as IUser)
-//                          .catch(this.handleError);
-//    }
-    CreateProfile(myData: any){
-    let body = JSON.stringify(myData);
-    return this._http.post(this._baseUrl + 'profile/', body, {headers: this.headers})
-                      .toPromise()
-                      .then(res => res.json().data)
-                      .catch(this.handleError);
-}
+   GetProfiles(): Observable<IUser[]>{
+       return this._http.get(this._baseUrl + 'profile')
+       .map((res: Response) => {
+           return res.json() as IUser[];
+       })
+       .catch(this.handleError);
+   }
 
-   UpdateProfile(user: IUser): Observable<void>{
+   GetProfile(id: number): Observable<IUser>{
+       return this._http.get(this._baseUrl + 'profile/' + id)
+       .map((res: Response) => {
+           return res.json();
+       })
+       .catch(this.handleError);
+   }
+
+    CreateProfile(user: IUser){
+        let body = JSON.stringify(user);
+        var requestOptions = new RequestOptions({method:RequestMethod.Post, headers: this.headers});
+        return this._http.post(this._baseUrl + 'profile/', body, requestOptions)
+                    .map(res => res.json())
+                    .catch(this.handleError);
+                    //   .toPromise()
+                    //   .then(res => res.json().data)
+                    //   .catch(this.handleError);
+    }
+    TokenBasedRegister(tokenReg: TokenReg){
+        let body = JSON.stringify(tokenReg);
+        var requestOptions = new RequestOptions({method:RequestMethod.Post, headers: this.headers});
+        return this._http.post(this._baseUrl + 'account/register/',body,requestOptions)
+        // .map(resp => resp.json())
+        .catch(this.handleError);
+    }
+
+   UpdateProfile(id: number, user: any): Observable<void>{
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Access-Control-Allow-Origin', '*');
 
-    return this._http.put(this._baseUrl + 'profile/' + user.ID, JSON.stringify(user), {headers: header})
+    return this._http.put(this._baseUrl + 'profile/' + id, JSON.stringify(user), {headers: headers})
       .map((res: Response) => { return; })
       .catch(this.handleError);
    }
+   
 
    private errHandler(){
        console.log('Error occured');
@@ -71,5 +81,3 @@ export class DatingService {
        return Observable.throw(error);    
     }    
 }
-
-
