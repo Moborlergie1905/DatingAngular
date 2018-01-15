@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatingService } from '../service/datingservice.service';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
-import { IUser, TokenReg } from '../model/user';
+import { IUser, TokenReg, LoginAccess } from '../model/user';
 import { DbOperation } from '../Shared/enum';
 import { Observable } from 'rxjs/Rx';
 import { Global } from '../Shared/global';
@@ -20,6 +20,8 @@ export class HomeComponent implements OnInit {
   // user: IUser;
   user: IUser = new IUser();
   tokenReg: TokenReg = new TokenReg();
+  access: LoginAccess = new LoginAccess();
+
   dd: string;
   mm: string;
   yy: string;
@@ -119,8 +121,18 @@ days = [
         this.tokenReg.ConfirmPassword = this.user.Password;
     this.datingService.TokenBasedRegister(this.tokenReg)
         .subscribe(dat => this.tokenReg = dat);
-        console.log('Data',this.tokenReg);
-        this.router.navigate(['user'])
+        // console.log('Data',this.tokenReg);
+
+
+        // this.access.username = this.user.Email;
+        // this.access.password = this.user.Password;
+        // this.access.grant_type = 'password';
+       
+        let userName = this.user.Email;
+        let password = this.user.Password;
+        this.datingService.LocalLogin(userName,password)
+        .subscribe(login => console.log('login:',login.access_token));
+        // this.router.navigate(['user'])
         
   }
 

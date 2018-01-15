@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise';
-import { IUser } from '../model/user';
+import { IUser, LoginAccess, TokenParams } from '../model/user';
 import { TokenReg } from '../model/user';
 import { ConfigService } from '../shared/config.service';
 
@@ -19,6 +19,8 @@ export class DatingService {
   private headers = new Headers({'Content-Type': 'application/json'});
   
       _baseUrl: string = '';
+      _baseHost: string = '';
+      AccessToken: string = '';
 
       user: IUser;
       users: IUser[];
@@ -26,6 +28,7 @@ export class DatingService {
 
   constructor(private _http: Http, private configService: ConfigService) {
     this._baseUrl = configService.getApiURI();
+    this._baseHost = configService.getApiHost();
    }  
 
    GetProfiles(): Observable<IUser[]>{
@@ -62,6 +65,20 @@ export class DatingService {
         .catch(this.handleError);
     }
 
+    LocalLogin(username: string, password: string): Observable<TokenParams>{
+        
+        var headersForToken = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
+        // var headersForToken = new Headers();
+        // headersForToken.append('Content-Type', 'application/x-www-form-urlencoded');
+        // headersForToken.append('Content-Type', 'application/json');
+        // headersForToken.append('Access-Control-Allow-Origin', '*');
+        var data = "grant_type=password&userName="+username+"&password="+password;
+       
+        return this._http.post(this._baseHost + 'token',data,{headers: headersForToken})
+        .map(res => res.json() as TokenParams)
+        .catch(this.handleError);
+    }
+
    UpdateProfile(id: number, user: any): Observable<void>{
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -81,3 +98,8 @@ export class DatingService {
        return Observable.throw(error);    
     }    
 }
+export const contentHeaders = new Headers();
+contentHeaders.append('Accept', 'application/json');
+contentHeaders.append('Content-Type', 'application/json');
+contentHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+contentHeaders.append('Access-Control-Allow-Origin','*');

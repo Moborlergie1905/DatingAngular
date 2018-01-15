@@ -6,10 +6,12 @@ import { DateListComponent } from './date-list.component';
 import { DateDetailComponent } from './date-detail.component';
 import { ChatComponent } from './chat.component';
 import { DateFeedComponent } from './date-feed.component';
+import { AccountRoutingModule } from './account-routing.module';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    AccountRoutingModule
   ],
   declarations: [
     UserHomeComponent,
@@ -17,7 +19,8 @@ import { DateFeedComponent } from './date-feed.component';
     DateListComponent,
     DateDetailComponent,
     ChatComponent,
-    DateFeedComponent    
+    DateFeedComponent
+     
   ]
 })
 export class AccountModule { }

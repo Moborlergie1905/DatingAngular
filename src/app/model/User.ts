@@ -35,6 +35,19 @@ export class TokenReg{
       ConfirmPassword: string;
 }
 
+export class TokenParams{
+      access_token: string;
+      token_type: string;
+      expires_in: string;
+      userName: string;
+}
+
+export class LoginAccess{
+      username: string;
+      password: string;
+      grant_type: string;
+}
+
 export interface IDateReg{
       ID?: number;
       MinAge?: number;

@@ -1,3 +1,22 @@
-<p>
-  login works!
-</p>
+<div class="col-md-5">
+  <form (submit)="login()">
+      <div class="form-row"> 
+          <div class="form-group col-md-6">
+            <label for="userName">Username</label>
+            <input type="text" class="form-control form-control-sm" placeholder="Username" 
+            [(ngModel)] = "username" name="username">
+          </div> 
+
+          <div class="form-group col-md-6">
+            <label for="password">Password</label>
+            <input type="text" class="form-control form-control-sm" placeholder="Password" 
+            [(ngModel)] = "password" name="password">
+          </div>  
+      </div>
+      <div class="form-row">
+          <div class="form-group col-md-12">
+              <button type="submit" class="btn btn-danger">Login</button>
+          </div>
+      </div>        
+  </form>
+</div>

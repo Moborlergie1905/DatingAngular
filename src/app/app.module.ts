@@ -53,9 +53,9 @@ import { AccountModule } from './account/account.module';
   ],
   imports: [
     BrowserModule,
-    AccountModule,   
-    ProfileModule,
     AppRoutingModule,
+    AccountModule,   
+    ProfileModule,   
     BrowserAnimationsModule,
     FormsModule,
     MatInputModule,
